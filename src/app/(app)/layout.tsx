@@ -81,12 +81,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href} passHref legacyBehavior>
-                  <SidebarMenuButton asChild tooltip={item.label} isActive={pathname === item.href}>
-                    <a>
-                      <item.icon />
-                      <span>{item.label}</span>
-                    </a>
+                <Link href={item.href}>
+                  <SidebarMenuButton tooltip={item.label} isActive={pathname === item.href}>
+                    <item.icon />
+                    <span>{item.label}</span>
                   </SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
@@ -111,12 +109,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                </div>
              </SidebarMenuItem>
             <SidebarMenuItem>
-              <Link href="/login" passHref legacyBehavior>
-                <SidebarMenuButton asChild tooltip="Logout">
-                  <a>
-                    <LogOut />
-                    <span>Logout</span>
-                  </a>
+              <Link href="/login">
+                <SidebarMenuButton tooltip="Logout">
+                  <LogOut />
+                  <span>Logout</span>
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
