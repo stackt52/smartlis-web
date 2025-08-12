@@ -5,7 +5,7 @@ import * as React from "react"
 import Link, { type LinkProps } from "next/link"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
-import { PanelLeft } from "lucide-react"
+import { HamburgerMenuIcon } from "@radix-ui/react-icons"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
@@ -280,7 +280,7 @@ const SidebarTrigger = React.forwardRef<
       }}
       {...props}
     >
-      <PanelLeft />
+      <HamburgerMenuIcon />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
@@ -540,8 +540,8 @@ type SidebarMenuButtonProps = {
   isActive?: boolean
   tooltip?: string | React.ComponentProps<typeof TooltipContent>
 } & (
-  | (React.ComponentPropsWithoutRef<"button"> & { as?: "button", href?: never})
-  | (React.ComponentPropsWithoutRef<typeof Link> & { as: typeof Link })
+  | (React.ComponentPropsWithoutRef<"button"> & { href?: never })
+  | (React.ComponentPropsWithoutRef<"a"> & { href: string })
 ) & VariantProps<typeof sidebarMenuButtonVariants>
 
 

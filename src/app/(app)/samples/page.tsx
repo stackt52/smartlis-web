@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -15,12 +14,12 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import {
-  ArrowUpDown,
-  ChevronDown,
-  MoreHorizontal,
-  PlusCircle,
-  File,
-} from "lucide-react";
+  CaretSortIcon,
+  ChevronDownIcon,
+  DotsHorizontalIcon,
+  PlusCircledIcon,
+  FileIcon,
+} from "@radix-ui/react-icons";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -144,7 +143,7 @@ export const columns: ColumnDef<Sample>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Sample ID
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -183,7 +182,7 @@ export const columns: ColumnDef<Sample>[] = [
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
+              <DotsHorizontalIcon className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -242,11 +241,11 @@ export default function SampleManagementPage() {
         </div>
         <div className="ml-auto flex items-center gap-2">
           <Button variant="outline">
-            <File className="mr-2 h-4 w-4" />
+            <FileIcon className="mr-2 h-4 w-4" />
             Export
           </Button>
           <Button>
-            <PlusCircle className="mr-2 h-4 w-4" />
+            <PlusCircledIcon className="mr-2 h-4 w-4" />
             Register Sample
           </Button>
         </div>
@@ -273,7 +272,7 @@ export default function SampleManagementPage() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="ml-auto">
-                  Columns <ChevronDown className="ml-2 h-4 w-4" />
+                  Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">

@@ -6,7 +6,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Bell, PlusCircle, FlaskConical, Beaker, FileCheck, HardDrive } from 'lucide-react';
+import { BellIcon, PlusCircledIcon, VercelLogoIcon, CheckboxIcon, ArchiveIcon } from '@radix-ui/react-icons';
+
 
 export default function DashboardPage() {
   return (
@@ -20,14 +21,14 @@ export default function DashboardPage() {
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="icon">
-            <Bell className="h-4 w-4" />
+            <BellIcon className="h-4 w-4" />
           </Button>
           <Button>
-            <PlusCircle className="mr-2 h-4 w-4" />
+            <PlusCircledIcon className="mr-2 h-4 w-4" />
             Register Sample
           </Button>
           <Button variant="outline">
-            <PlusCircle className="mr-2 h-4 w-4" />
+            <PlusCircledIcon className="mr-2 h-4 w-4" />
             Place Order
           </Button>
         </div>
@@ -38,7 +39,7 @@ export default function DashboardPage() {
             <CardTitle className="text-sm font-medium">
               Samples Received Today
             </CardTitle>
-            <FlaskConical className="h-4 w-4 text-muted-foreground" />
+            <VercelLogoIcon className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">142</div>
@@ -52,7 +53,7 @@ export default function DashboardPage() {
             <CardTitle className="text-sm font-medium">
               Tests in Progress
             </CardTitle>
-            <Beaker className="h-4 w-4 text-muted-foreground" />
+            <VercelLogoIcon className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">89</div>
@@ -66,7 +67,7 @@ export default function DashboardPage() {
             <CardTitle className="text-sm font-medium">
               Results Awaiting Validation
             </CardTitle>
-            <FileCheck className="h-4 w-4 text-muted-foreground" />
+            <CheckboxIcon className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>
@@ -78,7 +79,7 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Instrument Status</CardTitle>
-            <HardDrive className="h-4 w-4 text-muted-foreground" />
+            <ArchiveIcon className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">3/3 Online</div>
@@ -99,7 +100,7 @@ export default function DashboardPage() {
           <div className="space-y-4">
             <div className="flex items-start gap-4">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-destructive/10">
-                <Bell className="h-4 w-4 text-destructive" />
+                <BellIcon className="h-4 w-4 text-destructive" />
               </div>
               <div>
                 <p className="font-medium">Critical: Centrifuge #2 Offline</p>
@@ -111,7 +112,7 @@ export default function DashboardPage() {
             </div>
              <div className="flex items-start gap-4">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500/10">
-                <Bell className="h-4 w-4 text-yellow-500" />
+                <BellIcon className="h-4 w-4 text-yellow-500" />
               </div>
               <div>
                 <p className="font-medium">Warning: QC failure on Glucose test</p>

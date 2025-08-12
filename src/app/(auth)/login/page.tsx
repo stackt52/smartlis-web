@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck } from "lucide-react";
+import { CheckCircledIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +30,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-2xl bg-card">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-            <ShieldCheck className="h-8 w-8 text-primary" />
+            <CheckCircledIcon className="h-8 w-8 text-primary" />
           </div>
           <CardTitle className="font-headline text-3xl font-bold">SmartLIS</CardTitle>
           <CardDescription>
