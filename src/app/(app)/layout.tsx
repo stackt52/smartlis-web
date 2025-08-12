@@ -22,8 +22,8 @@ import {
   ArchiveIcon,
   CounterClockwiseClockIcon,
   ExitIcon,
-  CheckCircledIcon,
   ChevronDownIcon,
+  CubeIcon,
 } from '@radix-ui/react-icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -70,9 +70,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-primary">
-              <CheckCircledIcon className="h-6 w-6" />
+              <CubeIcon className="h-6 w-6" />
             </div>
-            <h1 className="text-xl font-semibold">SmartLIS</h1>
+            <h1 className="text-xl font-semibold">TheCubeFactory</h1>
           </div>
         </SidebarHeader>
         <SidebarContent>

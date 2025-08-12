@@ -1,20 +1,12 @@
 "use client";
 
-import { CheckCircledIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Blocks, Chrome } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -26,47 +18,76 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md shadow-2xl bg-card">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-            <CheckCircledIcon className="h-8 w-8 text-primary" />
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <div className="grid w-full max-w-6xl grid-cols-1 rounded-lg shadow-2xl md:grid-cols-2">
+        <div className="flex flex-col justify-center p-12">
+          <div className="mb-10 flex items-center gap-2">
+            <Blocks className="h-8 w-8 text-primary" />
+            <span className="text-2xl font-bold">TheCubeFactory</span>
           </div>
-          <CardTitle className="font-headline text-3xl font-bold">SmartLIS</CardTitle>
-          <CardDescription>
-            Sign in to access your laboratory information system.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="you@example.com"
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
+
+          <h1 className="text-4xl font-bold tracking-tight">Welcome back</h1>
+          <p className="mt-2 text-muted-foreground">
+            Please enter your details
+          </p>
+
+          <div className="mt-8 space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email address</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" required />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Checkbox id="remember" />
+                <Label htmlFor="remember" className="font-normal">
+                  Remember for 30 days
+                </Label>
+              </div>
               <Link
                 href="#"
-                className="text-sm text-primary underline-offset-4 hover:underline"
+                className="text-sm font-medium text-primary hover:underline"
               >
-                Forgot your password?
+                Forgot password
               </Link>
             </div>
-            <Input id="password" type="password" required />
+
+            <div className="space-y-4">
+              <Button className="w-full" onClick={handleSignIn}>
+                Sign in
+              </Button>
+              <Button variant="outline" className="w-full">
+                <Chrome className="mr-2 h-4 w-4" />
+                Sign in with Google
+              </Button>
+            </div>
+            <p className="text-center text-sm text-muted-foreground">
+              Don't have an account?{" "}
+              <Link href="#" className="font-semibold text-primary hover:underline">
+                Sign up
+              </Link>
+            </p>
           </div>
-        </CardContent>
-        <CardFooter className="flex flex-col gap-4 pt-6">
-          <Button className="w-full" onClick={handleSignIn}>Sign In</Button>
-          <Button variant="outline" className="w-full">
-            Create an Account
-          </Button>
-        </CardFooter>
-      </Card>
-    </main>
+        </div>
+        <div className="hidden items-center justify-center rounded-r-lg bg-primary/10 p-12 md:flex">
+          <img
+            src="https://placehold.co/600x400.png"
+            alt="Illustration"
+            className="h-full w-full rounded-lg object-cover"
+            data-ai-hint="illustration abstract"
+          />
+        </div>
+      </div>
+    </div>
   );
 }
