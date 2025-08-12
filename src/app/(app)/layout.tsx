@@ -1,4 +1,9 @@
+
+'use client';
+
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   SidebarProvider,
   Sidebar,
@@ -8,7 +13,6 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarInset,
 } from '@/components/ui/sidebar';
 import {
   Home,
@@ -60,6 +64,7 @@ const userRole = 'systemAdministrator' as keyof typeof navItems;
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const items = navItems[userRole];
+  const pathname = usePathname();
 
   return (
     <SidebarProvider>
@@ -76,10 +81,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <SidebarMenuButton href={item.href} tooltip={item.label}>
-                  <item.icon />
-                  <span>{item.label}</span>
-                </SidebarMenuButton>
+                <Link href={item.href} passHref legacyBehavior>
+                  <SidebarMenuButton asChild tooltip={item.label} isActive={pathname === item.href}>
+                    <a>
+                      <item.icon />
+                      <span>{item.label}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
@@ -102,15 +111,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                </div>
              </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton href="/login" tooltip="Logout">
-                <LogOut />
-                <span>Logout</span>
-              </SidebarMenuButton>
+              <Link href="/login" passHref legacyBehavior>
+                <SidebarMenuButton asChild tooltip="Logout">
+                  <a>
+                    <LogOut />
+                    <span>Logout</span>
+                  </a>
+                </SidebarMenuButton>
+              </Link>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
-      <SidebarInset>{children}</SidebarInset>
+      <main className="flex-1">{children}</main>
     </SidebarProvider>
   );
 }
