@@ -144,21 +144,8 @@ export const columns: ColumnDef<Patient>[] = [
       );
     },
     cell: ({ row }) => {
-      const patient = row.original;
-      const initials = patient.name
-        .split(" ")
-        .map((n) => n[0])
-        .join("");
       return (
-        <div className="flex items-center gap-3">
-          <Avatar>
-            <AvatarImage
-              src={`https://placehold.co/100x100.png?text=${initials}`}
-            />
-            <AvatarFallback>{initials}</AvatarFallback>
-          </Avatar>
-          <div className="font-medium">{patient.name}</div>
-        </div>
+        <div className="font-medium">{row.getValue("name")}</div>
       );
     },
   },
