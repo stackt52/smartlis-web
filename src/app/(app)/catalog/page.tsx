@@ -55,7 +55,7 @@ type Test = {
   name: string;
   department: "Chemistry" | "Hematology" | "Microbiology";
   specimenType: string;
-  price: number;
+  testType: "Panel" | "Standalone";
 };
 
 const data: Test[] = [
@@ -64,42 +64,42 @@ const data: Test[] = [
     name: "Basic Metabolic Panel",
     department: "Chemistry",
     specimenType: "Serum",
-    price: 75.0,
+    testType: "Panel",
   },
   {
     id: "HEM-001",
     name: "Complete Blood Count",
     department: "Hematology",
     specimenType: "Whole Blood",
-    price: 50.0,
+    testType: "Panel",
   },
   {
     id: "MICRO-001",
     name: "Urine Culture",
     department: "Microbiology",
     specimenType: "Urine",
-    price: 65.0,
+    testType: "Standalone",
   },
   {
     id: "CHEM-002",
     name: "Lipid Panel",
     department: "Chemistry",
     specimenType: "Serum",
-    price: 80.0,
+    testType: "Panel",
   },
   {
     id: "HEM-002",
     name: "Prothrombin Time (PT)",
     department: "Hematology",
     specimenType: "Plasma",
-    price: 45.0,
+    testType: "Standalone",
   },
   {
     id: "CHEM-003",
     name: "Thyroid Stimulating Hormone (TSH)",
     department: "Chemistry",
     specimenType: "Serum",
-    price: 90.0,
+    testType: "Standalone",
   },
 ];
 
@@ -156,16 +156,12 @@ export const columns: ColumnDef<Test>[] = [
     header: "Specimen Type",
     cell: ({ row }) => <div>{row.getValue("specimenType")}</div>,
   },
-  {
-    accessorKey: "price",
-    header: () => <div className="text-right">Price</div>,
+   {
+    accessorKey: "testType",
+    header: "Test Type",
     cell: ({ row }) => {
-      const price = parseFloat(row.getValue("price"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(price);
-      return <div className="text-right font-medium">{formatted}</div>;
+      const isPanel = row.getValue("testType") === "Panel";
+      return <Badge variant={isPanel ? "default" : "secondary"}>{row.getValue("testType")}</Badge>;
     },
   },
   {
