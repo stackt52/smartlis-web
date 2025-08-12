@@ -179,7 +179,7 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => {
       const date = new Date(row.getValue("lastLogin"));
       const formatted = date.toLocaleString();
-      return <div className="font-medium">{formatted}</div>;
+      return <div className="font-medium" suppressHydrationWarning>{formatted}</div>;
     },
   },
   {
