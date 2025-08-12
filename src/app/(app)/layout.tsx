@@ -46,6 +46,7 @@ const navItems = {
   ],
   systemAdministrator: [
     { href: '/dashboard', icon: HomeIcon, label: 'Dashboard' },
+    { href: '/patients', icon: PersonIcon, label: 'Patient Management' },
     { href: '/samples', icon: VercelLogoIcon, label: 'Sample Management' },
     { href: '/orders', icon: VercelLogoIcon, label: 'Test Orders' },
     { href: '/results', icon: FileTextIcon, label: 'Results & Validation' },
