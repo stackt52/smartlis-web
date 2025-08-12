@@ -539,15 +539,14 @@ type SidebarMenuButtonProps = {
   as?: React.ElementType
   isActive?: boolean
   tooltip?: string | React.ComponentProps<typeof TooltipContent>
-} & React.ComponentPropsWithoutRef<"button"> &
-  VariantProps<typeof sidebarMenuButtonVariants> &
-  (
-    | ({ as?: "a" | (string & object) } & LinkProps)
-    | { as?: "button" | (string & object); href?: never }
-  )
+} & (
+  | (React.ComponentPropsWithoutRef<"button"> & { as?: "button", href?: never})
+  | (React.ComponentPropsWithoutRef<typeof Link> & { as: typeof Link })
+) & VariantProps<typeof sidebarMenuButtonVariants>
+
 
 const SidebarMenuButton = React.forwardRef<
-  HTMLButtonElement,
+  HTMLButtonElement | HTMLAnchorElement,
   SidebarMenuButtonProps
 >(
   (
@@ -565,7 +564,7 @@ const SidebarMenuButton = React.forwardRef<
     const { isMobile, state } = useSidebar()
     const button = (
       <Comp
-        ref={ref}
+        ref={ref as any}
         data-sidebar="menu-button"
         data-size={size}
         data-active={isActive}
