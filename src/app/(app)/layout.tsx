@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import React from 'react';
@@ -81,12 +82,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href} passHref>
+                <Link href={item.href}>
                   <SidebarMenuButton asChild tooltip={item.label} isActive={pathname === item.href}>
-                    <>
+                    <div>
                       <item.icon />
                       <span>{item.label}</span>
-                    </>
+                    </div>
                   </SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
@@ -111,12 +112,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                </div>
              </SidebarMenuItem>
             <SidebarMenuItem>
-              <Link href="/login" passHref>
+              <Link href="/login">
                 <SidebarMenuButton asChild tooltip="Logout">
-                  <>
+                  <div>
                     <LogOut />
                     <span>Logout</span>
-                  </>
+                  </div>
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
