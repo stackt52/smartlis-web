@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: 'SmartLIS',
-  description: 'Smart Laboratory Information System',
+  description: 'A smart laboratory information system.',
 };
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })

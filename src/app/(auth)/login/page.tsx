@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { CubeIcon, FaceIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { CubeIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function LoginPage() {
           <div className="w-full max-w-md">
             <div className="mb-8 flex items-center gap-2 self-start">
               <CubeIcon className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold">TheCubeFactory</span>
+              <span className="text-2xl font-bold">SmartLIS</span>
             </div>
 
             <h1 className="mb-2 text-3xl font-bold tracking-tight text-foreground">
