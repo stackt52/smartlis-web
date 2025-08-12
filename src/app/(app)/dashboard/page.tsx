@@ -1,3 +1,6 @@
+
+"use client";
+
 import {
   Card,
   CardContent,
@@ -7,9 +10,54 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BellIcon, PlusCircledIcon, VercelLogoIcon, CheckboxIcon, ArchiveIcon } from '@radix-ui/react-icons';
+import { Bar, BarChart, CartesianGrid, Line, LineChart, Pie, PieChart, Sector, XAxis, YAxis } from "recharts";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart";
+import * as React from "react";
 
+
+const testsByDepartment = [
+  { name: "Chemistry", tests: 3, fill: "var(--color-chemistry)" },
+  { name: "Hematology", tests: 2, fill: "var(--color-hematology)" },
+  { name: "Microbiology", tests: 1, fill: "var(--color-microbiology)" },
+];
+
+const monthlyOrderVolume = [
+  { month: "July", Chemistry: 2, Hematology: 1, Microbiology: 0 },
+];
+
+
+const chartConfig = {
+  tests: {
+    label: "Tests",
+  },
+  chemistry: {
+    label: "Chemistry",
+    color: "hsl(var(--chart-2))",
+  },
+  hematology: {
+    label: "Hematology",
+    color: "hsl(var(--chart-1))",
+  },
+  microbiology: {
+    label: "Microbiology",
+    color: "hsl(var(--chart-3))",
+  },
+};
 
 export default function DashboardPage() {
+  const [activeDepartment, setActiveDepartment] = React.useState(testsByDepartment[0].name);
+
+  const activeIndex = React.useMemo(
+    () => testsByDepartment.findIndex((item) => item.name === activeDepartment),
+    [activeDepartment]
+  );
+  
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
       <div className="flex items-center justify-between">
@@ -89,6 +137,115 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Order Trends by Department</CardTitle>
+            <CardDescription>Monthly trend of test orders by department.</CardDescription>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <ChartContainer config={chartConfig} className="h-[300px] w-full">
+              <LineChart
+                accessibilityLayer
+                data={monthlyOrderVolume}
+                margin={{
+                  left: 12,
+                  right: 12,
+                }}
+              >
+                <CartesianGrid vertical={false} />
+                <XAxis
+                  dataKey="month"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tickFormatter={(value) => value.toLocaleString()}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent indicator="line" />}
+                />
+                 <ChartLegend content={<ChartLegendContent />} />
+                <Line
+                  dataKey="Hematology"
+                  type="natural"
+                  stroke="var(--color-hematology)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                 <Line
+                  dataKey="Chemistry"
+                  type="natural"
+                  stroke="var(--color-chemistry)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                 <Line
+                  dataKey="Microbiology"
+                  type="natural"
+                  stroke="var(--color-microbiology)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+        <Card className="col-span-3 flex flex-col">
+          <CardHeader>
+            <CardTitle>Available Tests by Department</CardTitle>
+            <CardDescription>Distribution of tests offered across lab departments.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex-1 pb-0">
+            <ChartContainer
+              config={chartConfig}
+              className="mx-auto aspect-square max-h-[250px]"
+            >
+              <PieChart>
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                />
+                <Pie
+                  data={testsByDepartment}
+                  dataKey="tests"
+                  nameKey="name"
+                  innerRadius={60}
+                  activeIndex={activeIndex}
+                  activeShape={({ outerRadius = 0, ...props }) => (
+                    <g>
+                      <Sector {...props} outerRadius={outerRadius + 10} />
+                      <Sector
+                        {...props}
+                        outerRadius={outerRadius}
+                        innerRadius={outerRadius - 8}
+                      />
+                    </g>
+                  )}
+                   onMouseOver={(e) => {
+                     setActiveDepartment(e.name);
+                   }}
+                />
+                 <ChartLegend
+                  content={<ChartLegendContent nameKey="name" />}
+                  onMouseOver={(data) => {
+                    if (data.value) {
+                      setActiveDepartment(data.value);
+                    }
+                  }}
+                 />
+              </PieChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+      </div>
+      
       <Card>
         <CardHeader>
           <CardTitle>Recent Alerts</CardTitle>
